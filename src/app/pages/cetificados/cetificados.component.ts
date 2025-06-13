@@ -9,5 +9,5 @@ import { ItemCerticadoComponent } from "../../_components/item-certicado/item-ce
   styleUrl: './cetificados.component.css'
 })
 export class CetificadosComponent {
-
+ 
 }
