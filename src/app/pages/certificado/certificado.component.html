@@ -5,10 +5,18 @@
       <p class="m-0">Voltar</p>
     </div>
 
-    <app-secondary-button></app-secondary-button>
+    <app-secondary-button
+      phClass="ph ph-download-simple"
+      label="Download"
+      (click)="downloadCertificado()"
+    ></app-secondary-button>
   </div>
 
-  <div class="certificado d-flex justify-content-center align-items-center">
+  @if(certificado){
+  <div
+    #certificadoContainer
+    class="certificado d-flex justify-content-center align-items-center"
+  >
     <img
       class="icone-medal"
       src="certificates\Certificate_Ribbon.png"
@@ -27,15 +35,16 @@
           <P>Este certificado comprova que</P>
         </div>
 
-        <p class="nome-aluno">Ana Silva Lopes</p>
+        <p class="nome-aluno">{{ certificado.nome }}</p>
         <div class="lista-atividade-group">
           <p class="lista-atividade-titulo">
             Concluiu com sucesso as seguintes atividades
           </p>
-          <p class="lista-atividade">mock de texto</p>
+          <p class="lista-atividade">{{ certificado.atividades.join(", ") }}</p>
         </div>
       </div>
-      <p class="data-emeissao">Emitido em 25/04/2025</p>
+      <p class="data-emeissao">Emitido em {{ certificado.dataEmissao }}</p>
     </div>
   </div>
+  }
 </div>

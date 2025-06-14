@@ -17,7 +17,7 @@
         maxlength="150"
         required
         name="nome"
-        [(ngModel)]="nome"
+        [(ngModel)]="certificado.nome"
         type="text"
         class="form-control custom-input"
         placeholder="Nome do aluno"
@@ -49,29 +49,32 @@
       <app-secondary-button
         label="Adicionar"
         phClass="ph ph-plus"
-        [disabled]="atividadeRef?.value.length === 0"
+        (click)="changeActivities()"
+        [disabled]="!atividade || atividadeRef?.value.length === 0"
       ></app-secondary-button>
     </div>
 
     <div class="atividade-group">
       <label class="form-label">Lista de atividades</label>
       <div class="item-list w-100">
-        @for (atividade of atividades; track $index) {
+        @for (atividade of certificado.atividades; track $index) {
         <div class="item">
           <span class="item-text">{{ atividade }}</span>
-          <div class="remove-btn">
+          <div class="remove-btn" (click)="removeActivity($index)">
             <i class="ph-bold ph-x"></i>
           </div>
         </div>
 
-        @if ($index + 1 !== atividades.length) {
+        @if ($index + 1 !== certificado.atividades.length) {
         <hr />
         } }
       </div>
     </div>
 
     <app-primary-button
+      (click)="submit()"
       [disabled]="!formValido()"
+      
       label="Gerar certificado"
     ></app-primary-button>
   </div>
